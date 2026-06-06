@@ -1,12 +1,220 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Morning After Pills</title>
-</head>
-<body>
-    <h1>Morning After Pills</h1>
-    <p>Information about emergency contraception and how to obtain it legally and safely.</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Contraception</title>
 
-    <a href="index.html">← Back Home</a>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:#f5f7fb;
+            color:#333;
+            line-height:1.6;
+        }
+
+        header{
+            background:linear-gradient(135deg,#7c3aed,#a855f7);
+            color:white;
+            text-align:center;
+            padding:80px 20px;
+        }
+
+        header h1{
+            font-size:3rem;
+            margin-bottom:10px;
+        }
+
+        header p{
+            max-width:750px;
+            margin:auto;
+            font-size:1.1rem;
+        }
+
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:auto;
+            padding:40px 0;
+        }
+
+        .section{
+            background:white;
+            padding:30px;
+            margin-bottom:25px;
+            border-radius:15px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .section h2{
+            color:#7c3aed;
+            margin-bottom:15px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            padding:25px;
+            border-radius:15px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.08);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+        }
+
+        .card h3{
+            color:#7c3aed;
+            margin-bottom:10px;
+        }
+
+        .info-box{
+            background:#f3e8ff;
+            border-left:5px solid #7c3aed;
+            padding:20px;
+            margin-top:15px;
+            border-radius:8px;
+        }
+
+        .btn{
+            display:inline-block;
+            background:#7c3aed;
+            color:white;
+            text-decoration:none;
+            padding:12px 25px;
+            border-radius:8px;
+            margin-top:20px;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#6d28d9;
+        }
+
+        footer{
+            background:#222;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Emergency Contraception</h1>
+    <p>
+        Reliable information about morning-after pills, how they work,
+        when they are most effective, and where to seek professional advice.
+    </p>
+</header>
+
+<div class="container">
+
+    <section class="section">
+        <h2>What Is Emergency Contraception?</h2>
+        <p>
+            Emergency contraception is a method used to help prevent pregnancy
+            after unprotected sex or contraceptive failure. It is intended for
+            occasional emergency use and should not replace regular contraception.
+        </p>
+
+        <div class="info-box">
+            <strong>Important:</strong> Emergency contraception does not protect
+            against sexually transmitted infections (STIs).
+        </div>
+    </section>
+
+    <section>
+        <h2 style="margin-bottom:20px;">Key Information</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>⏰ Time Matters</h3>
+                <p>
+                    Emergency contraception is generally most effective when
+                    taken as soon as possible after unprotected intercourse.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🩺 Professional Guidance</h3>
+                <p>
+                    A pharmacist or healthcare professional can help determine
+                    the most appropriate option based on your circumstances.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🔒 Safe and Regulated</h3>
+                <p>
+                    Use products obtained from licensed pharmacies and trusted
+                    healthcare providers.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📋 Follow-Up Care</h3>
+                <p>
+                    If you have concerns about pregnancy, side effects, or your
+                    menstrual cycle, seek medical advice promptly.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>Does emergency contraception end an existing pregnancy?</h3>
+        <p>
+            No. Emergency contraception is intended to prevent pregnancy before
+            it occurs and does not terminate an established pregnancy.
+        </p>
+
+        <br>
+
+        <h3>Can it be used as regular birth control?</h3>
+        <p>
+            Emergency contraception is designed for occasional emergency use.
+            Regular contraceptive methods are generally more effective for
+            ongoing pregnancy prevention.
+        </p>
+
+        <br>
+
+        <h3>Where can I get more information?</h3>
+        <p>
+            Consult a licensed healthcare professional, clinic, or pharmacist
+            for personalized medical advice.
+        </p>
+
+        <a href="#" class="btn">Find Healthcare Support</a>
+    </section>
+
+    <a href="index.html" class="btn">← Back Home</a>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Health Information Center. All Rights Reserved.</p>
+</footer>
+
 </body>
 </html>
