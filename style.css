@@ -905,3 +905,14 @@ footer{
 .contact-form button:hover{
     background:#005fa3;
 }
+.user-section a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+}
+
+.cart-icon {
+    width: 20px;
+    height: 20px;
+}
