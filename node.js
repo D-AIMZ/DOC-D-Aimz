@@ -2,12 +2,9 @@
 const express = require('express');
 const twilio = require('twilio');
 const app = express();
-
 app.use(express.json());
-
 app.post('/api/send-sms', async (req, res) => {
     const { to, message } = req.body;
-
     const client = twilio('YOUR_TWILIO_SID', 'YOUR_TWILIO_AUTH_TOKEN');
     try {
         await client.messages.create({
@@ -20,5 +17,4 @@ app.post('/api/send-sms', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
-
 app.listen(3000, () => console.log('SMS server running on port 3000'));
