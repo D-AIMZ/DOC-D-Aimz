@@ -109,51 +109,177 @@
         <button onclick="getLocation()">
             Find Doctors Near Me
         </button>
-        <div class="more-info">
-            <p> Use this app to:</p>
+<!-- MORE INFO SECTION -->
+<section class="more-info-section">
+    <div class="more-info-container">
+        <div class="more-info-content">
+            <h2>🏥 Your Complete Healthcare Companion</h2>
+            <p>Use this app to:</p>
             <ul>
-                <li>Find nearby hospitals</li>
-                <li>Book doctor appointments</li>
-                <li>Check consultation prices</li>
-                <li>Connect with online doctors</li>
-                <li>View latest medical trends</li>
+                <li>📍 <strong>Find nearby hospitals</strong> — Locate medical facilities around you</li>
+                <li>📅 <strong>Book doctor appointments</strong> — Schedule consultations with specialists</li>
+                <li>💰 <strong>Check consultation prices</strong> — Compare fees across doctors</li>
+                <li>💻 <strong>Connect with online doctors</strong> — Get medical advice from home</li>
+                <li>📰 <strong>View latest medical trends</strong> — Stay informed on health news</li>
             </ul>
+            <a href="#services" class="btn btn-primary">Explore Our Services ↓</a>
         </div>
-    </section>
-    <!-- SERVICES -->
-    <section class="services" id="services">
-        <h2>Medical Services</h2>
-        <div class="service-card">
+        <div class="more-info-image">
+            <div class="info-icon-grid">
+                <div class="info-icon-item">📍</div>
+                <div class="info-icon-item">📅</div>
+                <div class="info-icon-item">💻</div>
+                <div class="info-icon-item">💰</div>
+                <div class="info-icon-item">🏥</div>
+                <div class="info-icon-item">📰</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services" id="services">
+    <div class="services-header">
+        <h2>Our Medical Services</h2>
+        <p>Comprehensive healthcare solutions designed for your well-being. Access quality medical services anytime, anywhere.</p>
+    </div>
+
+    <div class="services-grid">
+
+        <!-- 1. Online Consultation -->
+        <div class="service-card featured">
+            <div class="service-icon">💻</div>
+            <span class="service-badge">Popular</span>
             <h3>Online Consultation</h3>
-            <p>Talk to certified doctors online anytime.</p>
-            <a href="https://www.doctoroncall.com.my/" target="_blank" rel="noopener noreferrer">  Connect Now  </a>
+            <p>Talk to certified doctors online anytime via video, phone, or chat. Get medical advice without leaving your home.</p>
+            <div class="service-features">
+                <span>✅ Video calls</span>
+                <span>✅ Phone calls</span>
+                <span>✅ Secure chat</span>
+            </div>
+            <div class="service-footer">
+                <span class="service-price">From UGX 20,000</span>
+                <a href="doctor-consultation.html" class="service-btn">Connect Now →</a>
+            </div>
         </div>
+
+        <!-- 2. Doctor Specialisation -->
         <div class="service-card">
+            <div class="service-icon">👨‍⚕️</div>
             <h3>Doctor Specialisation</h3>
-            <p>Search specialists including dentists, surgeons, and pediatricians.</p>
-            <a href="#doctor-list">   View Specialists  </a>
+            <p>Search and connect with specialists including cardiologists, dentists, surgeons, pediatricians, and more.</p>
+            <div class="service-features">
+                <span>✅ 9+ Specialties</span>
+                <span>✅ Top-rated doctors</span>
+                <span>✅ Licensed professionals</span>
+            </div>
+            <div class="service-footer">
+                <span class="service-price">Fees from UGX 74,000</span>
+                <a href="doctors.html" class="service-btn">View Specialists →</a>
+            </div>
         </div>
+
+        <!-- 3. Online Pharmacy -->
         <div class="service-card">
-            <h3>Latest Pharmaceuticals</h3>
-            <p>Learn about new medicines and health products.</p>
-            <a href="https://www.webmd.com/drugs/2/index" target="_blank">Learn More</a>
+            <div class="service-icon">💊</div>
+            <span class="service-badge service-badge-green">New</span>
+            <h3>Online Pharmacy</h3>
+            <p>Browse and order medicines, vitamins, and healthcare products with fast delivery to your doorstep.</p>
+            <div class="service-features">
+                <span>✅ 500+ products</span>
+                <span>✅ Prescription medicines</span>
+                <span>✅ Free delivery</span>
+            </div>
+            <div class="service-footer">
+                <span class="service-price">Prices from UGX 3,000</span>
+                <a href="online-pharmacy.html" class="service-btn">Shop Now →</a>
+            </div>
         </div>
+
+        <!-- 4. Hospitals & Clinics -->
         <div class="service-card" id="hospitals">
+            <div class="service-icon">🏥</div>
             <h3>Hospitals & Clinics</h3>
-            <p>Locate nearby hospitals and medical facilities.</p>
-            <a href="https://www.google.com/maps/search/hospitals+near+me/" target="_blank"> Find Hospitals </a>
+            <p>Locate nearby hospitals, clinics, and medical facilities with directions, contact info, and reviews.</p>
+            <div class="service-features">
+                <span>✅ Real-time location</span>
+                <span>✅ Contact details</span>
+                <span>✅ User reviews</span>
+            </div>
+            <div class="service-footer">
+                <span class="service-price">Free service</span>
+                <a href="https://www.google.com/maps/search/hospitals+near+me/" target="_blank" rel="noopener noreferrer" class="service-btn">Find Hospitals →</a>
+            </div>
         </div>
+
+        <!-- 5. Health Trends & News -->
         <div class="service-card">
-            <h3>Health Trends</h3>
-            <p>Stay updated with modern healthcare trends.</p>
-            <a href="https://www.who.int/news-room" target="_blank">Read News </a>
+            <div class="service-icon">📰</div>
+            <h3>Health Trends & News</h3>
+            <p>Stay updated with the latest medical research, health guidelines, disease outbreaks, and wellness tips.</p>
+            <div class="service-features">
+                <span>✅ WHO updates</span>
+                <span>✅ Medical research</span>
+                <span>✅ Wellness tips</span>
+            </div>
+            <div class="service-footer">
+                <span class="service-price">Free access</span>
+                <a href="https://www.who.int/news-room" target="_blank" rel="noopener noreferrer" class="service-btn">Read News →</a>
+            </div>
         </div>
+
+        <!-- 6. Subscription Plans -->
         <div class="service-card">
+            <div class="service-icon">⭐</div>
+            <span class="service-badge service-badge-gold">Best Value</span>
             <h3>Subscription Plans</h3>
-            <p>Subscribe for premium health consultation services.</p>
-            <a href="#">Subscribe Now</a>
+            <p>Subscribe for premium health consultation services with unlimited access, priority booking, and exclusive discounts.</p>
+            <div class="service-features">
+                <span>✅ Unlimited consultations</span>
+                <span>✅ Priority booking</span>
+                <span>✅ 20% off pharmacy</span>
+            </div>
+            <div class="service-footer">
+                <span class="service-price">From UGX 50,000/mo</span>
+                <a href="#" class="service-btn">Subscribe Now →</a>
+            </div>
         </div>
-    </section>
+
+        <!-- 7. Lab Tests -->
+        <div class="service-card">
+            <div class="service-icon">🔬</div>
+            <h3>Lab Tests & Diagnostics</h3>
+            <p>Book lab tests online with home sample collection. Get results digitally within 24-48 hours.</p>
+            <div class="service-features">
+                <span>✅ Home collection</span>
+                <span>✅ 50+ test panels</span>
+                <span>✅ Digital reports</span>
+            </div>
+            <div class="service-footer">
+                <span class="service-price">From UGX 15,000</span>
+                <a href="#" class="service-btn">Book a Test →</a>
+            </div>
+        </div>
+
+        <!-- 8. Emergency Services -->
+        <div class="service-card emergency">
+            <div class="service-icon">🚑</div>
+            <span class="service-badge service-badge-red">24/7</span>
+            <h3>Emergency Services</h3>
+            <p>Immediate medical assistance for emergencies. Call our hotline or find the nearest emergency room.</p>
+            <div class="service-features">
+                <span>🚑 Ambulance dispatch</span>
+                <span>📞 24/7 hotline</span>
+                <span>📍 ER locator</span>
+            </div>
+            <div class="service-footer">
+                <span class="service-price emergency-phone">📞 +256 700 000 000</span>
+                <a href="tel:+256700000000" class="service-btn service-btn-red">Call Now</a>
+            </div>
+        </div>
+
+    </div>
+</section>
    <!-- DOCTOR LIST -->
 <section id="doctors">
     <h2>Our Medical Specialists</h2>
