@@ -79,7 +79,7 @@ $(document).ready(function () {
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                to: '+256700000000', // Your SMS-capable number
+                to: '+256761726197', // Your SMS-capable number
                 message: smsText
             }),
             success: function () {
@@ -97,7 +97,7 @@ $(document).ready(function () {
         const body = encodeURIComponent(
             `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nInquiry Type: ${type}\n\nMessage:\n${msg}`
         );
-        window.location.href = `mailto:support@medicalassist.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:daimzroni@gmail.com?subject=${subject}&body=${body}`;
 
         showStatus('📧 Your email client has been opened. Please click send to complete.', 'info');
         $('button[type="submit"]').prop('disabled', false).text('Send Message');
