@@ -611,6 +611,145 @@
     </footer>
 
     <script src="app.js"></script>
+    <script>
+    // Doctor Filter Function
+    function filterDoctors(specialty) {
+        // Update active button
+        document.querySelectorAll('.doctor-filter button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+
+        // Filter cards
+        const cards = document.querySelectorAll('.doctor-card');
+        cards.forEach(card => {
+            if (specialty === 'all') {
+                card.style.display = 'block';
+            } else {
+                const cardSpecialty = card.getAttribute('data-specialty');
+                card.style.display = cardSpecialty === specialty ? 'block' : 'none';
+            }
+        });
+    }
+
+    // View Profile Function
+    function viewDoctorProfile(doctorId) {
+        const doctors = {
+            'sarah-johnson': {
+                name: 'Dr. Sarah Johnson',
+                specialty: 'Cardiologist',
+                experience: '14 years',
+                fee: '$40',
+                hospital: 'City Heart Hospital, Kampala',
+                bio: 'Dr. Sarah Johnson is a highly skilled cardiologist with over 14 years of experience in diagnosing and treating heart conditions. She specializes in hypertension management, heart disease prevention, and cardiac rehabilitation.',
+                education: 'MBChB - Makerere University\nMMed (Cardiology) - University of Nairobi',
+                languages: 'English, Swahili, Luo'
+            },
+            'michael-brown': {
+                name: 'Dr. Michael Brown',
+                specialty: 'Dentist',
+                experience: '10 years',
+                fee: '$25',
+                hospital: 'Bright Smile Dental Clinic, Kampala',
+                bio: 'Dr. Michael Brown provides comprehensive dental care with a gentle touch. He is experienced in routine check-ups, fillings, extractions, root canals, and cosmetic dentistry.',
+                education: 'BDS - Makerere University\nMSc (Oral Surgery) - University of Nairobi',
+                languages: 'English, Swahili'
+            },
+            'grace-achieng': {
+                name: 'Dr. Grace Achieng',
+                specialty: 'Pediatrician',
+                experience: '12 years',
+                fee: '$35',
+                hospital: "Children's Wellness Centre, Kampala",
+                bio: 'Dr. Grace Achieng is dedicated to children\'s health and well-being. She provides comprehensive pediatric care from newborn to adolescence.',
+                education: 'MBChB - Makerere University\nMMed (Pediatrics) - Makerere University',
+                languages: 'English, Swahili, Acholi'
+            },
+            'nancy-kato': {
+                name: 'Dr. Nancy Kato',
+                specialty: 'Gynecologist',
+                experience: '16 years',
+                fee: '$45',
+                hospital: "Women's Health Hospital, Kampala",
+                bio: 'Dr. Nancy Kato is a compassionate gynecologist committed to women\'s health at every stage of life. She offers prenatal care, family planning, and reproductive health services.',
+                education: 'MBChB - Makerere University\nMMed (OB/GYN) - University of Nairobi',
+                languages: 'English, Swahili, Luganda'
+            },
+            'james-ochieng': {
+                name: 'Dr. James Ochieng',
+                specialty: 'Dermatologist',
+                experience: '9 years',
+                fee: '$38',
+                hospital: 'Skin Care Clinic, Kampala',
+                bio: 'Dr. James Ochieng treats a wide range of skin conditions with modern dermatological techniques. He is passionate about skin health and patient education.',
+                education: 'MBChB - Makerere University\nMMed (Dermatology) - University of Nairobi',
+                languages: 'English, Swahili, Dholuo'
+            },
+            'paul-mukasa': {
+                name: 'Dr. Paul Mukasa',
+                specialty: 'Orthopedic Surgeon',
+                experience: '15 years',
+                fee: '$50',
+                hospital: 'Bone & Joint Institute, Kampala',
+                bio: 'Dr. Paul Mukasa is an experienced orthopedic surgeon specializing in fracture repair, joint replacement, and sports medicine.',
+                education: 'MBChB - Makerere University\nMMed (Orthopedics) - University of Nairobi',
+                languages: 'English, Swahili, Luganda'
+            },
+            'rebecca-nalongo': {
+                name: 'Dr. Rebecca Nalongo',
+                specialty: 'Ophthalmologist',
+                experience: '11 years',
+                fee: '$42',
+                hospital: 'Vision Care Eye Centre, Kampala',
+                bio: 'Dr. Rebecca Nalongo provides comprehensive eye care including cataract surgery, glaucoma management, and vision correction.',
+                education: 'MBChB - Makerere University\nMMed (Ophthalmology) - University of Nairobi',
+                languages: 'English, Swahili, Luganda'
+            },
+            'david-ssempijja': {
+                name: 'Dr. David Ssempijja',
+                specialty: 'General Physician',
+                experience: '8 years',
+                fee: '$20',
+                hospital: 'MedicalAssist Clinic, Kampala',
+                bio: 'Dr. David Ssempijja provides thorough general medical care for patients of all ages. He manages chronic conditions, performs health screenings, and offers preventive medicine.',
+                education: 'MBChB - Makerere University\nMSc (Internal Medicine) - Makerere University',
+                languages: 'English, Swahili, Luganda'
+            },
+            'catherine-nakamya': {
+                name: 'Dr. Catherine Nakamya',
+                specialty: 'Neurologist',
+                experience: '13 years',
+                fee: '$55',
+                hospital: 'Neuroscience Centre, Kampala',
+                bio: 'Dr. Catherine Nakamya specializes in diagnosing and treating disorders of the nervous system including migraines, epilepsy, and stroke.',
+                education: 'MBChB - Makerere University\nMMed (Neurology) - University of Nairobi',
+                languages: 'English, Swahili, Luganda'
+            }
+        };
+
+        const doc = doctors[doctorId];
+        if (doc) {
+            const message = `📋 DOCTOR PROFILE\n\n` +
+                `Name: ${doc.name}\n` +
+                `Specialty: ${doc.specialty}\n` +
+                `Experience: ${doc.experience}\n` +
+                `Consultation Fee: ${doc.fee}\n` +
+                `Hospital: ${doc.hospital}\n\n` +
+                `👤 About:\n${doc.bio}\n\n` +
+                `🎓 Education:\n${doc.education}\n\n` +
+                `🗣️ Languages: ${doc.languages}`;
+
+            alert(message);
+        }
+    }
+
+    // Initialize: show all doctors on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Make sure all doctors are visible initially
+        const cards = document.querySelectorAll('.doctor-card');
+        cards.forEach(card => card.style.display = 'block');
+    });
+</script>
 
 </body>
 </html>
