@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - MedicalAssist</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #f0f4f8; }
+        .top-bar { background: linear-gradient(135deg, #0a5c36 0%, #0d7a4a 100%); color: #fff; padding: 8px 0; font-size: 13px; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .top-bar a { color: #fff; text-decoration: none; }
+        .header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 10px 0; }
+        .header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #0a5c36; }
+        .logo img { height: 36px; }
+        .logo span { font-size: 22px; font-weight: 700; }
+        .logo small { font-size: 11px; color: #666; font-weight: 400; display: block; }
+        nav { background: #fff; border-bottom: 2px solid #0a5c36; }
+        nav .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; }
+        nav ul li a { display: block; padding: 12px 16px; color: #333; text-decoration: none; font-size: 14px; font-weight: 500; }
+        nav ul li a:hover, nav ul li a.active { background: #0a5c36; color: #fff; }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 28px; cursor: pointer; color: #333; padding: 8px; }
+        .page-header { background: linear-gradient(135deg, #0a5c36, #0d7a4a); color: #fff; padding: 25px 0; text-align: center; }
+        .page-header h1 { font-size: clamp(22px, 4vw, 32px); }
+        .account-section { padding: 30px 0; }
+        .account-container { max-width: 1200px; margin: 0 auto; padding: 0 15px; display: grid; grid-template-columns: 250px 1fr; gap: 25px; }
+        .account-sidebar { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); height: fit-content; }
+        .user-avatar { text-align: center; margin-bottom: 15px; }
+        .user-avatar .avatar-circle { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #0a5c36, #0d7a4a); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; margin: 0 auto 10px; }
+        .user-avatar h3 { font-size: 16px; color: #333; }
+        .user-avatar p { font-size: 12px; color: #999; }
+        .sidebar-menu { list-style: none; }
+        .sidebar-menu li { border-bottom: 1px solid #f0f0f0; }
+        .sidebar-menu li a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; color: #333; text-decoration: none; font-size: 13px; border-radius: 6px; transition: all 0.2s; }
+        .sidebar-menu li a:hover, .sidebar-menu li a.active { background: #e8f5e9; color: #0a5c36; }
+        .sidebar-menu li a .badge { margin-left: auto; background: #e74c3c; color: #fff; border-radius: 50%; padding: 1px 6px; font-size: 10px; }
+        .account-content { background: #fff; border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .account-content h2 { font-size: 20px; color: #0a5c36; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e8f5e9; }
+        .profile-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; color: #333; margin-bottom: 5px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
+        .form-group input:focus { outline: none; border-color: #0a5c36; box-shadow: 0 0 0 3px rgba(10,92,54,0.1); }
+        .save-btn { padding: 10px 30px; background: linear-gradient(135deg, #0a5c36, #0d7a4a); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+        .save-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(10,92,54,0.3); }
+        footer { background: #0a5c36; color: #fff; padding: 30px 0 15px; margin-top: 40px; }
+        footer .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-bottom: 20px; }
+        footer h4 { font-size: 16px; margin-bottom: 12px; color: #81c784; }
+        footer ul { list-style: none; }
+        footer ul li { margin-bottom: 6px; }
+        footer ul li a { color: #ccc; text-decoration: none; font-size: 13px; }
+        footer ul li a:hover { color: #fff; }
+        .footer-bottom { text-align: center; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            nav ul { display: none; flex-direction: column; width: 100%; }
+            nav ul.show { display: flex; }
+            .account-container { grid-template-columns: 1fr; }
+            .account-sidebar { position: static; }
+            .profile-form .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .account-content { padding: 15px; }
+            .header .container { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <span>📞 +256 700 123 456 | ✉️ info@medicalassist.ug</span>
+            <div><a href="signin.html">Sign In</a></div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/w3cert.gif" alt="MedicalAssist" onerror="this.parentElement.innerHTML='<span style=font-size:28px>🏥</span>'">
+                <div>
+                    <span>MedicalAssist</span>
+                    <small>Your Health, Our Priority</small>
+                </div>
+            </a>
+            <button class="mobile-menu-btn" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</button>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="online-pharmacy.html">Pharmacy</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="doctor-consultation.html">Doctors</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header"><h1>My Account</h1></div>
+
+    <section class="account-section">
+        <div class="account-container">
+            <div class="account-sidebar">
+                <div class="user-avatar">
+                    <div class="avatar-circle" id="avatarInitial">U</div>
+                    <h3 id="userDisplayName">User</h3>
+                    <p id="userDisplayEmail">user@example.com</p>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" onclick="showSection('profile')">👤 My Profile</a></li>
+                    <li><a href="#" onclick="showSection('orders')">📦 My Orders <span class="badge" id="orderBadge">0</span></a></li>
+                    <li><a href="#" onclick="showSection('appointments')">📅 Appointments</a></li>
+                    <li><a href="wishlist.html">❤️ Wishlist</a></li>
+                    <li><a href="#" onclick="showSection('addresses')">📍 Addresses</a></li>
+                    <li><a href="#" onclick="showSection('password')">🔒 Change Password</a></li>
+                    <li><a href="#" onclick="signOut()" style="color:#e74c3c;">🚪 Sign Out</a></li>
+                </ul>
+            </div>
+            <div class="account-content">
+                <div id="profileSection">
+                    <h2>👤 My Profile</h2>
+                    <div class="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" id="profFirstName" placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" id="profLastName" placeholder="Doe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="profEmail" placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="profPhone" placeholder="+256 700 000 000">
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="profDob">
+                        </div>
+                        <button class="save-btn" onclick="saveProfile()">Save Changes</button>
+                        <div id="profileMsg" style="margin-top:10px; font-size:13px;"></div>
+                    </div>
+                </div>
+                <div id="ordersSection" style="display:none;">
+                    <h2>📦 My Orders</h2>
+                    <div id="ordersList">
+                        <p style="color:#999;">No orders yet.</p>
+                    </div>
+                </div>
+                <div id="appointmentsSection" style="display:none;">
+                    <h2>📅 My Appointments</h2>
+                    <div id="appointmentsList">
+                        <p style="color:#999;">No appointments booked yet. <a href="doctor-consultation.html" style="color:#0a5c36;">Book a consultation</a></p>
+                    </div>
+                </div>
+                <div id="addressesSection" style="display:none;">
+                    <h2>📍 My Addresses</h2>
+                    <p style="color:#999; margin-bottom:15px;">Manage your delivery addresses</p>
+                    <div class="form-group">
+                        <label>Default Address</label>
+                        <textarea id="defAddress" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; min-height:60px; font-family:inherit;" placeholder="Street, City, District, Uganda"></textarea>
+                    </div>
+                    <button class="save-btn" onclick="saveAddress()">Save Address</button>
+                    <div id="addressMsg" style="margin-top:10px; font-size:13px;"></div>
+                </div>
+                <div id="passwordSection" style="display:none;">
+                    <h2>🔒 Change Password</h2>
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" id="oldPass" placeholder="••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" id="newPass" placeholder="•••••••• (min. 8 characters)">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" id="newPass2" placeholder="••••••••">
+                    </div>
+                    <button class="save-btn" onclick="changePassword()">Update Password</button>
+                    <div id="passMsg" style="margin-top:10px; font-size:13px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>MedicalAssist</h4>
+                    <p style="font-size:13px; color:#ccc;">Your trusted healthcare partner in Uganda.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="doctor-consultation.html">Doctor Consultation</a></li>
+                        <li><a href="online-pharmacy.html">Online Pharmacy</a></li>
+                        <li><a href="lab-tests.html">Lab Tests</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 MedicalAssist. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        const user = JSON.parse(localStorage.getItem('medicalUser')) || { name: 'User', email: 'user@example.com' };
+        document.getElementById('userDisplayName').textContent = user.name || 'User';
+        document.getElementById('userDisplayEmail').textContent = user.email || '';
+        document.getElementById('avatarInitial').textContent = (user.name || 'U')[0].toUpperCase();
+        if (user.firstName) document.getElementById('profFirstName').value = user.firstName;
+        if (user.lastName) document.getElementById('profLastName').value = user.lastName;
+        if (user.email) document.getElementById('profEmail').value = user.email;
+        if (user.phone) document.getElementById('profPhone').value = user.phone;
+        if (user.dob) document.getElementById('profDob').value = user.dob;
+
+        const orders = JSON.parse(localStorage.getItem('medicalOrders')) || [];
+        document.getElementById('orderBadge').textContent = orders.length;
+        if (orders.length > 0) {
+            document.getElementById('ordersList').innerHTML = orders.map((o, i) => 
+                `<div style="padding:12px; border:1px solid #e0e0e0; border-radius:8px; margin-bottom:10px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                        <div><strong>Order #${o.id}</strong></div>
+                        <div style="font-size:12px; color:#999;">${o.date}</div>
+                    </div>
+                    <div style="font-size:13px; color:#666; margin-top:5px;">${o.items.length} item(s) · ${o.total}</div>
+                </div>`
+            ).join('');
+        }
+
+        function showSection(section) {
+            ['profile','orders','appointments','addresses','password'].forEach(s => {
+                document.getElementById(s + 'Section').style.display = s === section ? 'block' : 'none';
+            });
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function saveProfile() {
+            const data = {
+                firstName: document.getElementById('profFirstName').value,
+                lastName: document.getElementById('profLastName').value,
+                email: document.getElementById('profEmail').value,
+                phone: document.getElementById('profPhone').value,
+                dob: document.getElementById('profDob').value
+            };
+            if (!data.firstName || !data.email) {
+                document.getElementById('profileMsg').innerHTML = '<span style="color:#e74c3c;">Name and email are required.</span>';
+                return;
+            }
+            const existing = JSON.parse(localStorage.getItem('medicalUser')) || {};
+            Object.assign(existing, data);
+            existing.name = data.firstName + ' ' + data.lastName;
+            localStorage.setItem('medicalUser', JSON.stringify(existing));
+            document.getElementById('profileMsg').innerHTML = '<span style="color:#0a5c36;">✅ Profile updated successfully!</span>';
+            document.getElementById('userDisplayName').textContent = existing.name;
+            document.getElementById('userDisplayEmail').textContent = existing.email;
+            document.getElementById('avatarInitial').textContent = existing.name[0].toUpperCase();
+        }
+
+        function saveAddress() {
+            const addr = document.getElementById('defAddress').value;
+            if (!addr) {
+                document.getElementById('addressMsg').innerHTML = '<span style="color:#e74c3c;">Please enter an address.</span>';
+                return;
+            }
+            const userData = JSON.parse(localStorage.getItem('medicalUser')) || {};
+            userData.address = addr;
+            localStorage.setItem('medicalUser', JSON.stringify(userData));
+            document.getElementById('addressMsg').innerHTML = '<span style="color:#0a5c36;">✅ Address saved!</span>';
+        }
+
+        function changePassword() {
+            const old = document.getElementById('oldPass').value;
+            const np = document.getElementById('newPass').value;
+            const np2 = document.getElementById('newPass2').value;
+            if (!old || !np || !np2) {
+                document.getElementById('passMsg').innerHTML = '<span style="color:#e74c3c;">Please fill all fields.</span>';
+                return;
+            }
+            if (np.length < 8) {
+                document.getElementById('passMsg').innerHTML = '<span style="color:#e74c3c;">New password must be at least 8 characters.</span>';
+                return;
+            }
+            if (np !== np2) {
+                document.getElementById('passMsg').innerHTML = '<span style="color:#e74c3c;">Passwords do not match.</span>';
+                return;
+            }
+            document.getElementById('passMsg').innerHTML = '<span style="color:#0a5c36;">✅ Password updated successfully!</span>';
+            document.getElementById('oldPass').value = '';
+            document.getElementById('newPass').value = '';
+            document.getElementById('newPass2').value = '';
+        }
+
+        function signOut() {
+            localStorage.removeItem('medicalUser');
+            alert('Signed out successfully.');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
