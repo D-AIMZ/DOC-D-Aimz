@@ -8,7 +8,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: #f0f4f8; }
-        .top-bar { background: linear-gradient(135deg, #0a5c36 0%, #0d7a4a 100%); color: #fff; padding: 8px 0; font-size: 13px; }
+        .top-bar { background: linear-gradient(135deg,#0a5c36,#0d7a4a); color: #fff; padding: 8px 0; font-size: 13px; }
         .top-bar .container, .header .container, nav .container, .breadcrumb .container, .orders-container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
         .top-bar .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
         .top-bar a { color: #fff; text-decoration: none; }
@@ -23,13 +23,12 @@
         nav ul li a { display: block; padding: 12px 16px; color: #333; text-decoration: none; font-size: 14px; font-weight: 500; }
         nav ul li a:hover { background: #0a5c36; color: #fff; }
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 28px; cursor: pointer; padding: 8px; }
-        .page-header { background: linear-gradient(135deg, #0a5c36, #0d7a4a); color: #fff; padding: 25px 0; text-align: center; }
-        .page-header h1 { font-size: clamp(22px, 4vw, 32px); }
+        .page-header { background: linear-gradient(135deg,#0a5c36,#0d7a4a); color: #fff; padding: 25px 0; text-align: center; }
+        .page-header h1 { font-size: clamp(22px,4vw,32px); }
         .breadcrumb { background: #fff; padding: 10px 0; border-bottom: 1px solid #e0e0e0; font-size: 13px; }
         .breadcrumb a { color: #0a5c36; text-decoration: none; }
         .breadcrumb span { color: #999; }
         .orders-section { padding: 30px 0; }
-        .orders-container { }
         .order-card { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 15px; }
         .order-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
         .order-id { font-weight: 700; font-size: 15px; color: #0a5c36; }
@@ -39,6 +38,78 @@
         .status-processing { background: #fff3e0; color: #e65100; }
         .status-shipped { background: #e3f2fd; color: #0d47a1; }
         .status-cancelled { background: #fce4ec; color: #c62828; }
-        .order-items-list { margin: 10px 0; }
         .order-item-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13px; color: #666; }
-        .order-total { text-align: right; font-size: 16px; font-weight: 700; color: #0a5c
+        .order-total { text-align: right; font-size: 16px; font-weight: 700; color: #0a5c36; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0; }
+        .empty-state { text-align: center; padding: 60px 20px; }
+        .empty-state .icon { font-size: 60px; margin-bottom: 15px; }
+        .empty-state h3 { font-size: 20px; color: #333; margin-bottom: 8px; }
+        .empty-state p { color: #999; font-size: 14px; margin-bottom: 20px; }
+        .empty-state a { display: inline-block; padding: 10px 25px; background: #0a5c36; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; }
+        .empty-state a:hover { background: #0d7a4a; }
+        footer { background: #0a5c36; color: #fff; padding: 30px 0 15px; margin-top: 40px; }
+        footer .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
+        footer h4 { font-size: 16px; margin-bottom: 12px; color: #81c784; }
+        footer ul { list-style: none; }
+        footer ul li a { color: #ccc; text-decoration: none; font-size: 13px; }
+        footer ul li a:hover { color: #fff; }
+        .footer-bottom { text-align: center; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: #aaa; margin-top: 20px; }
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            nav ul { display: none; flex-direction: column; width: 100%; }
+            nav ul.show { display: flex; }
+        }
+        @media (max-width: 480px) {
+            .header .container { flex-direction: column; text-align: center; }
+            .order-card { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"><div class="container"><span>📞 +256 700 123 456 | ✉️ info@medicalassist.ug</span><div><a href="signin.html">Sign In</a></div></div></div>
+    <div class="header"><div class="container">
+        <a href="index.html" class="logo"><img src="images/w3cert.gif" alt="MedicalAssist" onerror="this.parentElement.innerHTML='<span style=font-size:28px>🏥</span>'"><div><span>MedicalAssist</span><small>Your Health, Our Priority</small></div></a>
+        <button class="mobile-menu-btn" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</button>
+    </div></div>
+    <nav><div class="container"><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="online-pharmacy.html">Pharmacy</a></li>
+        <li><a href="doctor-consultation.html">Doctors</a></li>
+        <li><a href="my-account.html">My Account</a></li>
+        <li><a href="cart.html">Cart</a></li>
+    </ul></div></nav>
+    <div class="page-header"><h1>My Orders</h1></div>
+    <div class="breadcrumb"><div class="container"><a href="index.html">Home</a> / <a href="my-account.html">My Account</a> / <span>My Orders</span></div></div>
+    <section class="orders-section"><div class="orders-container" id="ordersContainer"></div></section>
+    <footer><div class="container">
+        <div class="footer-grid">
+            <div><h4>MedicalAssist</h4><p style="font-size:13px;color:#ccc;">Your trusted healthcare partner in Uganda.</p></div>
+            <div><h4>Quick Links</h4><ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+            <div><h4>Services</h4><ul><li><a href="doctor-consultation.html">Doctor Consultation</a></li><li><a href="online-pharmacy.html">Online Pharmacy</a></li><li><a href="lab-tests.html">Lab Tests</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">© 2026 MedicalAssist. All rights reserved.</div>
+    </div></footer>
+    <script>
+        const orders = JSON.parse(localStorage.getItem('medicalOrders')) || [];
+        const container = document.getElementById('ordersContainer');
+        if (orders.length === 0) {
+            container.innerHTML = '<div class="empty-state"><div class="icon">📦</div><h3>No orders yet</h3><p>You haven\'t placed any orders. Start shopping!</p><a href="online-pharmacy.html">Browse Pharmacy</a></div>';
+        } else {
+            container.innerHTML = orders.slice().reverse().map((o, i) => {
+                const statuses = ['Delivered','Processing','Shipped','Cancelled'];
+                const classes = ['status-delivered','status-processing','status-shipped','status-cancelled'];
+                const status = o.status || statuses[Math.floor(Math.random()*2)];
+                const cls = o.status ? (status==='Delivered'?classes[0]:status==='Processing'?classes[1]:status==='Shipped'?classes[2]:classes[3]) : classes[Math.floor(Math.random()*2)];
+                return `<div class="order-card">
+                    <div class="order-header">
+                        <div><span class="order-id">#${o.id}</span> <span class="order-date">${o.date || new Date().toLocaleDateString()}</span></div>
+                        <span class="order-status ${cls}">${status}</span>
+                    </div>
+                    ${(o.items||[]).map(item => `<div class="order-item-row"><span>${item.name || 'Item'}</span><span>x${item.quantity||1}</span></div>`).join('')}
+                    <div class="order-total">${o.total || 'UGX 0'}</div>
+                </div>`;
+            }).join('');
+        }
+    </script>
+</body>
+</html>
