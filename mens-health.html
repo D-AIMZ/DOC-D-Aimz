@@ -3,246 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Men's Health Hub</title>
-
+    <title>Men's Health - MedicalAssist</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f4f7fa;
-            color: #333;
-            line-height: 1.6;
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+        body{background:#f0f4f8}
+        .top-bar{background:linear-gradient(135deg,#0a5c36,#0d7a4a);color:#fff;padding:8px 0;font-size:13px}
+        .top-bar .container,.header .container,nav .container{max-width:1200px;margin:0 auto;padding:0 15px}
+        .top-bar .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+        .top-bar a{color:#fff;text-decoration:none}
+        .header{background:#fff;border-bottom:1px solid #e0e0e0;padding:10px 0}
+        .header .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+        .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0a5c36}
+        .logo img{height:36px}
+        .logo span{font-size:22px;font-weight:700}
+        .logo small{font-size:11px;color:#666;display:block}
+        .header-icons{display:flex;align-items:center;gap:12px}
+        .header-icons a{color:#333;text-decoration:none;font-size:13px;display:flex;align-items:center;gap:4px;padding:6px 10px;border-radius:6px}
+        .header-icons a:hover{background:#f0f4f8}
+        .header-icons .cart-count{background:#e74c3c;color:#fff;border-radius:50%;padding:1px 6px;font-size:11px;font-weight:700}
+        nav{background:#fff;border-bottom:2px solid #0a5c36}
+        nav ul{list-style:none;display:flex;flex-wrap:wrap}
+        nav ul li a{display:block;padding:12px 16px;color:#333;text-decoration:none;font-size:14px;font-weight:500}
+        nav ul li a:hover,nav ul li a.active{background:#0a5c36;color:#fff}
+        .mobile-menu-btn{display:none;background:none;border:none;font-size:28px;cursor:pointer;padding:8px;color:#333}
+        .page-header{background:linear-gradient(135deg,#0a5c36,#0d7a4a);color:#fff;padding:30px 0;text-align:center}
+        .page-header h1{font-size:clamp(22px,5vw,36px);margin-bottom:8px}
+        .page-header p{font-size:clamp(14px,2.5vw,16px);opacity:0.9}
+        .breadcrumb{background:#fff;padding:10px 0;border-bottom:1px solid #e0e0e0;font-size:13px}
+        .breadcrumb .container{max-width:1200px;margin:0 auto;padding:0 15px}
+        .breadcrumb a{color:#0a5c36;text-decoration:none}
+        .breadcrumb span{color:#999}
+        .cat-section{padding:30px 0}
+        .cat-container{max-width:1200px;margin:0 auto;padding:0 15px}
+        .cat-header{background:linear-gradient(135deg,#e3f2fd,#bbdefb);border-radius:12px;padding:20px 25px;margin-bottom:25px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+        .cat-header .ch-icon{font-size:48px}
+        .cat-header .ch-text h2{font-size:20px;color:#0a5c36;margin-bottom:5px}
+        .cat-header .ch-text p{font-size:13px;color:#555;line-height:1.5}
+        .cat-controls{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+        .cat-controls input{flex:1;padding:11px 16px;border:1px solid #ddd;border-radius:8px;font-size:14px;min-width:200px}
+        .cat-controls input:focus{outline:none;border-color:#0a5c36}
+        .cat-controls select{padding:11px 16px;border:1px solid #ddd;border-radius:8px;font-size:14px;background:#fff}
+        .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+        .product-card{background:#fff;border-radius:10px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.05);text-align:center;transition:transform 0.2s,box-shadow 0.2s;position:relative}
+        .product-card:hover{transform:translateY(-4px);box-shadow:0 6px 20px rgba(0,0,0,0.1)}
+        .product-card .p-badge{position:absolute;top:8px;left:8px;background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+        .product-card .p-sale{position:absolute;top:8px;right:8px;background:#f39c12;color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+        .product-card img{width:100%;height:140px;object-fit:contain;margin-bottom:10px;border-radius:6px;background:#fafafa;padding:8px}
+        .product-card .p-name{font-size:14px;color:#333;margin-bottom:3px;font-weight:600;min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .product-card .p-desc{font-size:11px;color:#999;margin-bottom:6px;min-height:30px}
+        .product-card .p-rating{font-size:12px;color:#f39c12;margin-bottom:4px}
+        .product-card .p-price{font-size:18px;font-weight:700;color:#0a5c36;margin-bottom:3px}
+        .product-card .p-old-price{font-size:12px;color:#999;text-decoration:line-through;margin-left:6px}
+        .product-card .p-free{font-size:11px;color:#0a5c36;margin-bottom:8px;font-weight:600}
+        .product-card .p-actions{display:flex;gap:6px}
+        .product-card .p-actions button{flex:1;padding:8px 4px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s}
+        .product-card .add-cart{background:#0a5c36;color:#fff}
+        .product-card .add-cart:hover{background:#0d7a4a}
+        .product-card .add-wish{background:#fce4ec;color:#e74c3c;flex:0 0 38px;font-size:16px}
+        .product-card .add-wish:hover{background:#f8bbd0}
+        .product-card .p-consult{display:block;margin-top:8px;padding:6px;background:#e8f5e9;color:#0a5c36;border:none;border-radius:6px;font-size:11px;cursor:pointer;text-decoration:none}
+        .product-card .p-consult:hover{background:#c8e6c9}
+        .pagination{display:flex;justify-content:center;gap:8px;margin-top:30px;flex-wrap:wrap}
+        .pagination button{padding:8px 16px;border:1px solid #ddd;border-radius:6px;background:#fff;cursor:pointer;font-size:13px}
+        .pagination button:hover,.pagination button.active{background:#0a5c36;color:#fff;border-color:#0a5c36}
+        .empty-state{grid-column:1/-1;text-align:center;padding:50px 20px;color:#999}
+        .empty-state .icon{font-size:50px;margin-bottom:10px}
+        footer{background:#0a5c36;color:#fff;padding:30px 0 15px;margin-top:40px}
+        footer .container{max-width:1200px;margin:0 auto;padding:0 15px}
+        .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px;margin-bottom:20px}
+        footer h4{font-size:16px;margin-bottom:12px;color:#81c784}
+        footer ul{list-style:none}
+        footer ul li{margin-bottom:6px}
+        footer ul li a{color:#ccc;text-decoration:none;font-size:13px}
+        footer ul li a:hover{color:#fff}
+        .footer-bottom{text-align:center;padding-top:15px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;color:#aaa}
+        @media(max-width:900px){.products-grid{grid-template-columns:repeat(3,1fr)}}
+        @media(max-width:768px){
+            .mobile-menu-btn{display:block}
+            nav ul{display:none;flex-direction:column;width:100%}
+            nav ul.show{display:flex}
+            .products-grid{grid-template-columns:repeat(2,1fr)}
+            .cat-controls{flex-direction:column}
+            .cat-controls select{width:100%}
         }
-
-        header {
-            background: #0d6efd;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 3rem;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 30px 0;
-        }
-
-        .hero {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            color: #0d6efd;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .stat-box {
-            background: white;
-            padding: 20px;
-            width: 220px;
-            margin: 10px;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        }
-
-        .stat-box h2 {
-            color: #0d6efd;
-            margin: 0;
-        }
-
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #0d6efd;
-            color: white;
-            text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            margin-top: 15px;
-        }
-
-        .btn:hover {
-            background: #0b5ed7;
+        @media(max-width:480px){
+            .header .container{flex-direction:column;text-align:center}
+            .header-icons{justify-content:center}
+            .products-grid{grid-template-columns:1fr}
+            .cat-header{flex-direction:column;text-align:center}
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>Men's Health Hub</h1>
-    <p>Empowering men to live healthier, stronger, and longer lives.</p>
-</header>
-
-<div class="container">
-
-    <section class="hero">
-        <h2>Your Health Matters</h2>
-        <p>
-            Men's health extends beyond fitness. It includes heart health,
-            mental well-being, nutrition, preventive screenings, healthy aging,
-            and lifestyle choices that support long-term wellness.
-        </p>
-
-        <a href="#services" class="btn">Explore Services</a>
-    </section>
-
-    <section class="stats">
-        <div class="stat-box">
-            <h2>30+</h2>
-            <p>Health Resources</p>
+    <div class="top-bar">
+        <div class="container">
+            <span>📞 +256 700 123 456 | ✉️ info@medicalassist.ug</span>
+            <div><a href="signin.html">Sign In</a></div>
         </div>
-
-        <div class="stat-box">
-            <h2>100%</h2>
-            <p>Wellness Focused</p>
+    </div>
+    <div class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/w3cert.gif" alt="MedicalAssist" onerror="this.parentElement.innerHTML='<span style=font-size:28px>🏥</span>'">
+                <div>
+                    <span>MedicalAssist</span>
+                    <small>Your Health, Our Priority</small>
+                </div>
+            </a>
+            <div class="header-icons">
+                <a href="cart.html">🛒 <span class="cart-count" id="cartCount">0</span></a>
+                <a href="my-account.html">👤 My Account</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</button>
         </div>
-
-        <div class="stat-box">
-            <h2>24/7</h2>
-            <p>Health Information Access</p>
+    </div>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="online-pharmacy.html">Pharmacy</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="doctor-consultation.html">Doctors</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
         </div>
-    </section>
+    </nav>
 
-    <section id="services">
-        <h2>Key Health Areas</h2>
+    <div class="page-header">
+        <h1>💪 Men's Health</h1>
+        <p>Premium supplements and products for men's vitality, stamina, and overall wellness</p>
+    </div>
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> / <a href="categories.html">Categories</a> / <span>Men's Health</span>
+        </div>
+    </div>
 
-        <div class="grid">
-
-            <div class="card">
-                <h3>❤️ Heart Health</h3>
-                <p>
-                    Learn about blood pressure, cholesterol management,
-                    cardiovascular fitness, and reducing heart disease risk.
-                </p>
+    <section class="cat-section">
+        <div class="cat-container">
+            <div class="cat-header">
+                <div class="ch-icon">💪</div>
+                <div class="ch-text">
+                    <h2>Men's Wellness & Vitality</h2>
+                    <p>Support your health at every stage of life. From daily multivitamins to targeted supplements for prostate health, energy, and performance — we carry trusted brands at affordable Ugandan prices. Free delivery on orders above UGX 50,000 within Kampala.</p>
+                </div>
             </div>
 
-            <div class="card">
-                <h3>🏋️ Physical Fitness</h3>
-                <p>
-                    Strength training, endurance exercises, flexibility,
-                    recovery strategies, and fitness planning.
-                </p>
+            <div class="cat-controls">
+                <input type="text" id="prodSearch" placeholder="Search men's health products..." onkeyup="renderProducts()">
+                <select id="sortBy" onchange="renderProducts()">
+                    <option value="name">Sort: Name A-Z</option>
+                    <option value="price-low">Sort: Price Low-High</option>
+                    <option value="price-high">Sort: Price High-Low</option>
+                    <option value="popular">Sort: Most Popular</option>
+                </select>
+                <select id="catFilter" onchange="renderProducts()">
+                    <option value="all">All Categories</option>
+                    <option value="multivitamin">Multivitamins</option>
+                    <option value="testosterone">Testosterone & Vitality</option>
+                    <option value="prostate">Prostate Health</option>
+                    <option value="energy">Energy & Stamina</option>
+                    <option value="heart">Heart Health</option>
+                    <option value="fitness">Fitness & Muscle</option>
+                </select>
             </div>
 
-            <div class="card">
-                <h3>🥗 Nutrition</h3>
-                <p>
-                    Healthy eating plans, weight management, hydration,
-                    and nutrient-rich food choices.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>🧠 Mental Wellness</h3>
-                <p>
-                    Stress management, emotional well-being, resilience,
-                    and mental health awareness.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>🔬 Preventive Care</h3>
-                <p>
-                    Regular screenings, health assessments, vaccinations,
-                    and early detection strategies.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>👨 Healthy Aging</h3>
-                <p>
-                    Guidance for maintaining mobility, energy levels,
-                    cognitive health, and quality of life as you age.
-                </p>
-            </div>
-
+            <div class="products-grid" id="productsGrid"></div>
+            
+            <div class="pagination" id="pagination"></div>
         </div>
     </section>
 
-    <section class="hero" style="margin-top:30px;">
-        <h2>Healthy Lifestyle Checklist</h2>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>MedicalAssist</h4>
+                    <p style="font-size:13px;color:#ccc;line-height:1.6;">Your trusted healthcare partner in Uganda. Quality medicines, expert doctors, and reliable health services.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Men's Health</h4>
+                    <ul>
+                        <li><a href="mens-health.html">All Men's Products</a></li>
+                        <li><a href="vitamins.html">Vitamins</a></li>
+                        <li><a href="weight-loss.html">Weight Loss</a></li>
+                        <li><a href="personal-care.html">Personal Care</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>📞 +256 700 123 456</li>
+                        <li>✉️ info@medicalassist.ug</li>
+                        <li>📍 Kampala, Uganda</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 MedicalAssist. All rights reserved.</div>
+        </div>
+    </footer>
 
-        <ul>
-            <li>Exercise regularly (150+ minutes weekly)</li>
-            <li>Eat balanced meals rich in vegetables and protein</li>
-            <li>Sleep 7–9 hours each night</li>
-            <li>Manage stress effectively</li>
-            <li>Stay hydrated throughout the day</li>
-            <li>Schedule annual health checkups</li>
-        </ul>
-    </section>
+    <script>
+        const allProducts = [
+            // Multivitamins for Men (cat: multivitamin)
+            {name:'Wellman Original 30\'s',cat:'multivitamin',desc:'29 nutrients including Siberian Ginseng, B6 & B12 for energy',price:48000,oldPrice:55000,rating:4.5,popular:95,badge:'Bestseller',img:'wellman.jpg'},
+            {name:'Wellman Max 30\'s',cat:'multivitamin',desc:'Extra strength with CoQ10, higher zinc & selenium',price:62000,oldPrice:0,rating:4.3,popular:78,badge:'',img:'wellman-max.jpg'},
+            {name:'Centrum Men 50+ 60\'s',cat:'multivitamin',desc:'Formulated for men over 50, heart & prostate support',price:55000,oldPrice:0,rating:4.4,popular:65,badge:'',img:'centrum-men.jpg'},
+            {name:'Men\'s One Daily 60\'s',cat:'multivitamin',desc:'Complete multivitamin with lycopene & saw palmetto',price:42000,oldPrice:48000,rating:4.2,popular:82,badge:'Sale',img:'one-daily-men.jpg'},
+            {name:'Vitabiotics Ultra Men 30\'s',cat:'multivitamin',desc:'Advanced formula with 25+ active ingredients',price:38000,oldPrice:0,rating:4.1,popular:55,badge:'',img:'ultra-men.jpg'},
+            {name:'Seven Seas Mens 50+ 30\'s',cat:'multivitamin',desc:'With omega-3, vitamin D, B12 for heart & brain',price:35000,oldPrice:0,rating:4.0,popular:48,badge:'',img:'seven-seas-men.jpg'},
 
-    <a href="index.html" class="btn">← Back Home</a>
+            // Testosterone & Vitality (cat: testosterone)
+            {name:'TestoUltra Testosterone Booster',cat:'testosterone',desc:'Natural T-booster with Tribulus, Maca & Zinc, 60 caps',price:85000,oldPrice:95000,rating:4.6,popular:120,badge:'Popular',img:'testoultra.jpg'},
+            {name:'Prime Male 60\'s',cat:'testosterone',desc:'Premium testosterone support with 12 active ingredients',price:110000,oldPrice:0,rating:4.7,popular:88,badge:'',img:'prime-male.jpg'},
+            {name:'Longjack XXXL Power Booster',cat:'testosterone',desc:'Tongkat Ali extract for libido & vitality, 30 caps',price:195000,oldPrice:220000,rating:4.5,popular:65,badge:'',img:'longjack-xxxl.jpg'},
+            {name:'Vipromac Capsules 30\'s',cat:'testosterone',desc:'Prostate function + male enhancement support',price:75000,oldPrice:0,rating:4.3,popular:52,badge:'',img:'vipromac.jpg'},
+            {name:'Gold Max Blue 10\'s',cat:'testosterone',desc:'Male enhancement, libido & performance booster',price:45000,oldPrice:55000,rating:4.4,popular:91,badge:'Hot',img:'goldmax.jpg'},
+            {name:'MMC Max Man Coffee 10 sachets',cat:'testosterone',desc:'Herbal coffee for men, passion & vitality blend',price:35000,oldPrice:0,rating:4.1,popular:73,badge:'',img:'maxman-coffee.jpg'},
+            {name:'XPower Man Capsules 30\'s',cat:'testosterone',desc:'Herbal male vitality & stamina enhancer',price:65000,oldPrice:0,rating:4.2,popular:45,badge:'',img:'xpower.jpg'},
 
-</div>
+            // Prostate Health (cat: prostate)
+            {name:'Saw Palmetto 450mg 100 softgels',cat:'prostate',desc:'Supports prostate health & urinary function',price:55000,oldPrice:0,rating:4.5,popular:77,badge:'',img:'saw-palmetto.jpg'},
+            {name:'Prostate Health Formula 60\'s',cat:'prostate',desc:'Saw palmetto, zinc, selenium & lycopene blend',price:48000,oldPrice:55000,rating:4.3,popular:62,badge:'Sale',img:'prostate-formula.jpg'},
+            {name:'Prostatirelax Capsules 30\'s',cat:'prostate',desc:'Herbal formula for prostate & urinary comfort',price:60000,oldPrice:0,rating:4.1,popular:40,badge:'',img:'prostatirelax.jpg'},
+            {name:'Beta-Sitosterol 500mg 90 caps',cat:'prostate',desc:'Plant sterol for prostate & urinary health',price:52000,oldPrice:0,rating:4.4,popular:55,badge:'',img:'beta-sitosterol.jpg'},
+            {name:'Lycopene 15mg 60 softgels',cat:'prostate',desc:'Tomato extract antioxidant for prostate health',price:35000,oldPrice:0,rating:4.0,popular:48,badge:'',img:'lycopene.jpg'},
 
-<footer>
-    <p>&copy; 2026 Men's Health Hub. All Rights Reserved.</p>
-</footer>
-    <div class="page-header"><h1>💪 Men's Health</h1><p>Products and supplements for men's wellness and vitality</p></div>
-<!-- Same breadcrumb and container -->
-<script>
-    const products = [
-        {name:'Wellman Original',desc:'Men\'s multivitamin, 30 tablets',price:48000,img:'wellman.jpg'},
-        {name:'Longjack Tongkat Ali',desc:'Male vitality supplement, 30 caps',price:130000,img:'longjack.jpg'},
-        {name:'Testosterone Booster',desc:'Natural T-booster, 60 capsules',price:85000,img:'testo.jpg'},
-        {name:'Saw Palmetto 450mg',desc:'Prostate health, 100 softgels',price:55000,img:'saw-palmetto.jpg'},
-        {name:'Maca Root 500mg',desc:'Energy & stamina, 60 capsules',price:35000,img:'maca.jpg'},
-        {name:'Zinc + Selenium',desc:'Male reproductive health, 60 tabs',price:18000,img:'zinc-selenium.jpg'},
-        {name:'Ginseng Korean Red',desc:'Energy & vitality, 30 capsules',price:65000,img:'ginseng.jpg'},
-        {name:'CoQ10 + L-Carnitine',desc:'Heart & energy support, 60 caps',price:72000,img:'coq10-carnitine.jpg'},
-        {name:'Vitamin D3 + K2',desc:'Bone & heart health, 60 tabs',price:28000,img:'d3k2.jpg'},
-        {name:'Tribulus Terrestris',desc:'Libido support, 90 capsules',price:45000,img:'tribulus.jpg'},
-        {name:'Ashwagandha KSM-66',desc:'Stress & testosterone, 60 caps',price:38000,img:'ashwa-ksm.jpg'},
-        {name:'Protein Powder Whey',desc:'Muscle recovery, 500g',price:95000,img:'whey.jpg'},
-        {name:'Omega-3 Fish Oil',desc:'Heart & joint health, 60 caps',price:42000,img:'mens-omega.jpg'},
-        {name:'B-Complex Plus',desc:'Energy metabolism, 60 tablets',price:22000,img:'bcomplex.jpg'},
-        {name:'Collagen Type II',desc:'Joint health, 60 capsules',price:55000,img:'collagen-ii.jpg'}
-    ];
-    // Same renderProducts(), addToCart(), addToWishlist() functions as vitamins.html
-</script>
+            // Energy & Stamina (cat: energy)
+            {name:'Korean Red Ginseng Extract 30 sticks',cat:'energy',desc:'6-year aged red ginseng, energy & immunity',price:85000,oldPrice:95000,rating:4.6,popular:89,badge:'Popular',img:'red-ginseng.jpg'},
+            {name:'Ashwagandha KSM-66 600mg 60 caps',cat:'energy',desc:'Stress relief, energy & testosterone support',price:38000,oldPrice:0,rating:4.5,popular:105,badge:'Bestseller',img:'ashwagandha-ksm.jpg'},
+            {name:'Maca Root 500mg 60 caps',cat:'energy',desc:'Peruvian maca for stamina & libido enhancement',price:35000,oldPrice:0,rating:4.2,popular:68,badge:'',img:'maca-root.jpg'},
+            {name:'Ginseng Coffee BF Suma 20 sachets',cat:'energy',desc:'Korean ginseng infused coffee for daily energy',price:65000,oldPrice:0,rating:4.3,popular:72,badge:'',img:'bf-suma-coffee.jpg'},
+            {name:'Rhodiola Rosea 500mg 60 caps',cat:'energy',desc:'Adaptogen for physical & mental endurance',price:32000,oldPrice:0,rating:4.1,popular:38,badge:'',img:'rhodiola.jpg'},
+            {name:'Cordyceps Plus 60 caps',cat:'energy',desc:'Mushroom extract for stamina & oxygen utilization',price:76500,oldPrice:0,rating:4.4,popular:55,badge:'',img:'cordyceps.jpg'},
 
+            // Heart Health (cat: heart)
+            {name:'Omega-3 Fish Oil 1000mg 60 caps',cat:'heart',desc:'EPA 360mg + DHA 240mg, heart & brain health',price:42000,oldPrice:48000,rating:4.5,popular:95,badge:'',img:'omega3-men.jpg'},
+            {name:'CoQ10 100mg 60 softgels',cat:'heart',desc:'Ubiquinone for heart energy & antioxidant support',price:65000,oldPrice:0,rating:4.4,popular:72,badge:'',img:'coq10-heart.jpg'},
+            {name:'Nattokinase 2000FU 60 caps',cat:'heart',desc:'Enzyme for healthy circulation & blood flow',price:55000,oldPrice:0,rating:4.3,popular:45,badge:'',img:'nattokinase.jpg'},
+            {name:'Ubiquinol CoQ10 100mg 30 softgels',cat:'heart',desc:'Active form CoQ10, better absorption for heart health',price:95000,oldPrice:110000,rating:4.6,popular:58,badge:'',img:'ubiquinol.jpg'},
+            {name:'Red Yeast Rice 600mg 60 caps',cat:'heart',desc:'Traditional Chinese heart health supplement',price:38000,oldPrice:0,rating:4.0,popular:33,badge:'',img:'red-yeast.jpg'},
+
+            // Fitness & Muscle (cat: fitness)
+            {name:'Whey Protein Isolate 900g',cat:'fitness',desc:'25g protein per serving, vanilla, muscle recovery',price:120000,oldPrice:140000,rating:4.7,popular:110,badge:'Popular',img:'whey-isolate.jpg'},
+            {name:'BCAA 2:1:1 120 caps',cat:'fitness',desc:'Branched chain amino acids for muscle repair',price:55000,oldPrice:0,rating:4.3,popular:62,badge:'',img:'bcaa.jpg'},
+            {name:'L-Glutamine 500mg 100 caps',cat:'fitness',desc:'Amino acid for muscle recovery & immunity',price:28000,oldPrice:0,rating:4.1,popular:48,badge:'',img:'glutamine.jpg'},
+            {name:'Creatine Monohydrate 500g',cat:'fitness',desc:'Micronized powder for strength & power output',price:75000,oldPrice:0,rating:4.6,popular:85,badge:'',img:'creatine.jpg'},
+            {name:'L-Arginine 1000mg 90 tabs',cat:'fitness',desc:'Nitric oxide booster for pump & blood flow',price:32000,oldPrice:0,rating:4.2,popular:55,badge:'',img:'arginine.jpg'},
+            {name:'Mass Gainer 2.5kg',cat:'fitness',desc:'High calorie weight gain formula, 1000 cal/serving',price:95000,oldPrice:110000,rating:4.4,popular:70,badge:'Sale',img:'mass-gainer.jpg'}
+        ];
+
+        let currentPage = 1;
+        const perPage = 12;
+
+        function renderProducts() {
+            const search = document.getElementById('prodSearch').value.toLowerCase();
+            const catF = document.getElementById('catFilter').value;
+            const sort = document.getElementById('sortBy').value;
+
+            let filtered = allProducts.filter(p => {
+                if (!p.name.toLowerCase().includes(search) && !p.desc.toLowerCase().includes(search)) return false;
+                if (catF !== 'all' && p.cat !== catF) return false;
+                return true;
+            });
+
+            // Sort
+            if (sort === 'price-low') filtered.sort((a,b) => a.price - b.price);
+            else if (sort === 'price-high') filtered.sort((a,b) => b.price - a.price);
+            else if (sort === 'popular') filtered.sort((a,b) => b.popular - a.popular);
+            else filtered.sort((a,b) => a.name.localeCompare(b.name));
+
+            // Pagination
+            const totalPages = Math.ceil(filtered.length / perPage);
+            if (currentPage > totalPages) currentPage = 1;
+            const start = (currentPage - 1) * perPage;
+            const pageItems = filtered.slice(start, start + perPage);
+
+            if (pageItems.length === 0) {
+                document.getElementById('productsGrid').innerHTML = '<div class="empty-state"><div class="icon">🔍</div><p>No products found matching your search.</p></div>';
+            } else {
+                document.getElementById('productsGrid').innerHTML = pageItems.map(p => {
+                    const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '');
+                    return `<div class="product-card">
+                        ${p.badge ? `<span class="p-badge">${p.badge}</span>` : ''}
+                        ${p.oldPrice > 0 ? `<span class="p-sale">${Math.round((1-p.price/p.oldPrice)*100)}% OFF</span>` : ''}
+                        <img src="images/${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/150?text=${encodeURIComponent(p.name)}'">
+                        <div class="p-name">${p.name}</div>
+                        <div class="p-desc">${p.desc}</div>
+                        <div class="p-rating">${stars} (${p.popular})</div>
+                        <div class="p-price">UGX ${p.price.toLocaleString()}${p.oldPrice ? `<span class="p-old-price">UGX ${p.oldPrice.toLocaleString()}</span>` : ''}</div>
+                        ${p.price >= 50000 ? '<div class="p-free">🚚 Free Delivery</div>' : ''}
+                        <div class="p-actions">
+                            <button class="add-cart" onclick="addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},'${p.img}')">Add to Cart</button>
+                            <button class="add-wish" onclick="addToWishlist('${p.name.replace(/'/g,"\\'")}',${p.price},'${p.img}')">♥</button>
+                        </div>
+                        ${p.cat === 'testosterone' ? `<a href="doctor-consultation.html" class="p-consult">👨‍⚕️ Consult a Doctor</a>` : ''}
+                    </div>`;
+                }).join('');
+            }
+
+            // Pagination buttons
+            let pagHtml = '';
+            for (let i = 1; i <= totalPages; i++) {
+                pagHtml += `<button class="${i === currentPage ? 'active' : ''}" onclick="currentPage=${i};renderProducts();">${i}</button>`;
+            }
+            document.getElementById('pagination').innerHTML = totalPages > 1 ? pagHtml : '';
+            
+            updateCartCount();
+        }
+
+        function addToCart(name, price, img) {
+            let cart = JSON.parse(localStorage.getItem('medicalCart')) || [];
+            const existing = cart.find(c => c.name === name);
+            if (existing) existing.quantity = (existing.quantity || 1) + 1;
+            else cart.push({name, price, img, quantity: 1});
+            localStorage.setItem('medicalCart', JSON.stringify(cart));
+            alert('✅ "' + name + '" added to cart!');
+            updateCartCount();
+        }
+
+        function addToWishlist(name, price, img) {
+            let wishlist = JSON.parse(localStorage.getItem('medicalWishlist')) || [];
+            if (!wishlist.find(w => w.name === name)) {
+                wishlist.push({name, price, img});
+                localStorage.setItem('medicalWishlist', JSON.stringify(wishlist));
+                alert('❤️ "' + name + '" added to wishlist!');
+            } else {
+                alert('Already in your wishlist!');
+            }
+        }
+
+        function updateCartCount() {
+            const c = JSON.parse(localStorage.getItem('medicalCart')) || [];
+            const el = document.getElementById('cartCount');
+            if (el) el.textContent = c.reduce((s,i) => s + (i.quantity || 1), 0);
+        }
+
+        renderProducts();
+    </script>
 </body>
 </html>
