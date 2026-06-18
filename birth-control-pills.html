@@ -3,218 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birth Control & Family Planning</title>
-
+    <title>Weight Loss - MedicalAssist</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+        body{background:#f0f4f8}
+        .top-bar{background:linear-gradient(135deg,#0a5c36,#0d7a4a);color:#fff;padding:8px 0;font-size:13px}
+        .top-bar .container,.header .container,nav .container{max-width:1200px;margin:0 auto;padding:0 15px}
+        .top-bar .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+        .top-bar a{color:#fff;text-decoration:none}
+        .header{background:#fff;border-bottom:1px solid #e0e0e0;padding:10px 0}
+        .header .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+        .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0a5c36}
+        .logo img{height:36px}
+        .logo span{font-size:22px;font-weight:700}
+        .logo small{font-size:11px;color:#666;display:block}
+        .header-icons{display:flex;align-items:center;gap:12px}
+        .header-icons a{color:#333;text-decoration:none;font-size:13px;display:flex;align-items:center;gap:4px;padding:6px 10px;border-radius:6px}
+        .header-icons a:hover{background:#f0f4f8}
+        .header-icons .cart-count{background:#e74c3c;color:#fff;border-radius:50%;padding:1px 6px;font-size:11px;font-weight:700}
+        nav{background:#fff;border-bottom:2px solid #0a5c36}
+        nav ul{list-style:none;display:flex;flex-wrap:wrap}
+        nav ul li a{display:block;padding:12px 16px;color:#333;text-decoration:none;font-size:14px;font-weight:500}
+        nav ul li a:hover,nav ul li a.active{background:#0a5c36;color:#fff}
+        .mobile-menu-btn{display:none;background:none;border:none;font-size:28px;cursor:pointer;padding:8px;color:#333}
+        .page-header{background:linear-gradient(135deg,#0a5c36,#0d7a4a);color:#fff;padding:30px 0;text-align:center}
+        .page-header h1{font-size:clamp(22px,5vw,36px);margin-bottom:8px}
+        .page-header p{font-size:clamp(14px,2.5vw,16px);opacity:0.9}
+        .breadcrumb{background:#fff;padding:10px 0;border-bottom:1px solid #e0e0e0;font-size:13px}
+        .breadcrumb .container{max-width:1200px;margin:0 auto;padding:0 15px}
+        .breadcrumb a{color:#0a5c36;text-decoration:none}
+        .breadcrumb span{color:#999}
+        .cat-section{padding:30px 0}
+        .cat-container{max-width:1200px;margin:0 auto;padding:0 15px}
+        .cat-header{background:linear-gradient(135deg,#fff8e1,#ffecb3);border-radius:12px;padding:20px 25px;margin-bottom:25px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+        .cat-header .ch-icon{font-size:48px}
+        .cat-header .ch-text h2{font-size:20px;color:#0a5c36;margin-bottom:5px}
+        .cat-header .ch-text p{font-size:13px;color:#555;line-height:1.5}
+        .cat-controls{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+        .cat-controls input{flex:1;padding:11px 16px;border:1px solid #ddd;border-radius:8px;font-size:14px;min-width:200px}
+        .cat-controls input:focus{outline:none;border-color:#0a5c36}
+        .cat-controls select{padding:11px 16px;border:1px solid #ddd;border-radius:8px;font-size:14px;background:#fff}
+        .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+        .product-card{background:#fff;border-radius:10px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.05);text-align:center;transition:transform 0.2s,box-shadow 0.2s;position:relative}
+        .product-card:hover{transform:translateY(-4px);box-shadow:0 6px 20px rgba(0,0,0,0.1)}
+        .product-card .p-badge{position:absolute;top:8px;left:8px;background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+        .product-card .p-sale{position:absolute;top:8px;right:8px;background:#f39c12;color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+        .product-card img{width:100%;height:140px;object-fit:contain;margin-bottom:10px;border-radius:6px;background:#fafafa;padding:8px}
+        .product-card .p-name{font-size:14px;color:#333;margin-bottom:3px;font-weight:600;min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .product-card .p-desc{font-size:11px;color:#999;margin-bottom:6px;min-height:30px}
+        .product-card .p-rating{font-size:12px;color:#f39c12;margin-bottom:4px}
+        .product-card .p-price{font-size:18px;font-weight:700;color:#0a5c36;margin-bottom:3px}
+        .product-card .p-old-price{font-size:12px;color:#999;text-decoration:line-through;margin-left:6px}
+        .product-card .p-free{font-size:11px;color:#0a5c36;margin-bottom:8px;font-weight:600}
+        .product-card .p-actions{display:flex;gap:6px}
+        .product-card .p-actions button{flex:1;padding:8px 4px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s}
+        .product-card .add-cart{background:#0a5c36;color:#fff}
+        .product-card .add-cart:hover{background:#0d7a4a}
+        .product-card .add-wish{background:#fce4ec;color:#e74c3c;flex:0 0 38px;font-size:16px}
+        .product-card .add-wish:hover{background:#f8bbd0}
+        .empty-state{grid-column:1/-1;text-align:center;padding:50px 20px;color:#999}
+        .pagination{display:flex;justify-content:center;gap:8px;margin-top:30px;flex-wrap:wrap}
+        .pagination button{padding:8px 16px;border:1px solid #ddd;border-radius:6px;background:#fff;cursor:pointer;font-size:13px}
+        .pagination button:hover,.pagination button.active{background:#0a5c36;color:#fff;border-color:#0a5c36}
+        .info-banner{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:10px;padding:18px 22px;margin-bottom:25px;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+        .info-banner .ib-icon{font-size:28px}
+        .info-banner .ib-text{font-size:13px;color:#333;line-height:1.5;flex:1}
+        .info-banner .ib-text strong{color:#0a5c36}
+        footer{background:#0a5c36;color:#fff;padding:30px 0 15px;margin-top:40px}
+        footer .container{max-width:1200px;margin:0 auto;padding:0 15px}
+        .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px;margin-bottom:20px}
+        footer h4{font-size:16px;margin-bottom:12px;color:#81c784}
+        footer ul{list-style:none}
+        footer ul li{margin-bottom:6px}
+        footer ul li a{color:#ccc;text-decoration:none;font-size:13px}
+        footer ul li a:hover{color:#fff}
+        .footer-bottom{text-align:center;padding-top:15px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;color:#aaa}
+        @media(max-width:900px){.products-grid{grid-template-columns:repeat(3,1fr)}}
+        @media(max-width:768px){
+            .mobile-menu-btn{display:block}
+            nav ul{display:none;flex-direction:column;width:100%}
+            nav ul.show{display:flex}
+            .products-grid{grid-template-columns:repeat(2,1fr)}
+            .cat-controls{flex-direction:column}
+            .cat-controls select{width:100%}
         }
-
-        body{
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background:#f8f9fc;
-            color:#333;
-            line-height:1.6;
-        }
-
-        header{
-            background:linear-gradient(135deg,#ec4899,#d946ef);
-            color:white;
-            text-align:center;
-            padding:80px 20px;
-        }
-
-        header h1{
-            font-size:3rem;
-            margin-bottom:10px;
-        }
-
-        header p{
-            max-width:700px;
-            margin:auto;
-            font-size:1.1rem;
-        }
-
-        .container{
-            width:90%;
-            max-width:1200px;
-            margin:auto;
-            padding:40px 0;
-        }
-
-        .section{
-            background:white;
-            padding:30px;
-            border-radius:15px;
-            margin-bottom:25px;
-            box-shadow:0 5px 15px rgba(0,0,0,0.08);
-        }
-
-        .section h2{
-            color:#d946ef;
-            margin-bottom:15px;
-        }
-
-        .grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:20px;
-        }
-
-        .card{
-            background:white;
-            padding:25px;
-            border-radius:15px;
-            box-shadow:0 5px 15px rgba(0,0,0,0.08);
-            transition:0.3s;
-        }
-
-        .card:hover{
-            transform:translateY(-5px);
-        }
-
-        .card h3{
-            color:#d946ef;
-            margin-bottom:10px;
-        }
-
-        .highlight{
-            background:#fdf2f8;
-            border-left:5px solid #d946ef;
-            padding:20px;
-            border-radius:10px;
-            margin-top:15px;
-        }
-
-        .btn{
-            display:inline-block;
-            background:#d946ef;
-            color:white;
-            text-decoration:none;
-            padding:12px 25px;
-            border-radius:8px;
-            margin-top:20px;
-            transition:0.3s;
-        }
-
-        .btn:hover{
-            background:#c026d3;
-        }
-
-        footer{
-            background:#222;
-            color:white;
-            text-align:center;
-            padding:20px;
-            margin-top:40px;
+        @media(max-width:480px){
+            .header .container{flex-direction:column;text-align:center}
+            .header-icons{justify-content:center}
+            .products-grid{grid-template-columns:1fr}
+            .cat-header{flex-direction:column;text-align:center}
+            .info-banner{flex-direction:column;text-align:center}
         }
     </style>
 </head>
-
 <body>
-
-<header>
-    <h1>🌸 Birth Control & Family Planning</h1>
-    <p>
-        Reliable information about contraceptive options, reproductive health,
-        and family planning to help individuals make informed healthcare decisions.
-    </p>
-</header>
-
-<div class="container">
-
-    <section class="section">
-        <h2>Understanding Birth Control</h2>
-        <p>
-            Birth control methods help prevent pregnancy and support family
-            planning goals. Different options may be suitable depending on
-            individual health needs, lifestyle, and personal preferences.
-        </p>
-
-        <div class="highlight">
-            <strong>Important:</strong> Always consult a qualified healthcare
-            professional before starting, changing, or stopping any contraceptive method.
-        </div>
-    </section>
-
-    <section>
-        <h2 style="margin-bottom:20px;">Contraceptive Options</h2>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>💊 Oral Contraceptive Pills</h3>
-                <p>
-                    Daily medications used to help prevent pregnancy when
-                    taken as directed by a healthcare professional.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>🩺 Professional Consultation</h3>
-                <p>
-                    Healthcare providers can help determine which option may
-                    be most appropriate for your individual circumstances.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>📅 Family Planning</h3>
-                <p>
-                    Learn about planning pregnancies, reproductive health,
-                    and long-term family planning strategies.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>🔒 Reproductive Health Education</h3>
-                <p>
-                    Access educational resources that support informed
-                    decision-making and healthy reproductive choices.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="section">
-        <h2>Frequently Asked Questions</h2>
-
-        <h3>Who should speak with a healthcare professional?</h3>
-        <p>
-            Anyone considering contraception, experiencing side effects,
-            or seeking personalized family planning advice should consult
-            a qualified healthcare provider.
-        </p>
-
-        <br>
-
-        <h3>Are all contraceptive methods suitable for everyone?</h3>
-        <p>
-            No. Health history, medications, age, and other factors may
-            influence which options are appropriate.
-        </p>
-
-        <br>
-
-        <h3>Why is professional guidance important?</h3>
-        <p>
-            Healthcare professionals can provide personalized recommendations,
-            discuss benefits and risks, and answer questions about reproductive health.
-        </p>
-
-        <a href="#" class="btn">Schedule a Consultation</a>
-    </section>
-
-    <a href="index.html" class="btn">← Back Home</a>
-
+    <div class="page-header">
+    <h1>💊 Birth Control Pills</h1>
+    <p>Oral contraceptives — all products require a valid prescription</p>
 </div>
+    <div class="cat-header" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">
+    <div class="ch-icon">💊</div>
+    <div class="ch-text">
+        <h2>Oral Contraceptives</h2>
+        <p>We carry a wide range of birth control pills including combined oral contraceptives (COCs) and progestogen-only pills (POPs/mini-pills). <strong>A valid prescription from a licensed doctor is required</strong> for all products. If you don't have a prescription, <a href="doctor-consultation.html" style="color:#0a5c36;font-weight:600;">book a consultation</a> with our doctors.</p>
+    </div>
+</div>
+    <div class="top-bar">
+        <div class="container">
+            <span>📞 +256 700 123 456 | ✉️ info@medicalassist.ug</span>
+            <div><a href="signin.html">Sign In</a></div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/w3cert.gif" alt="MedicalAssist" onerror="this.parentElement.innerHTML='<span style=font-size:28px>🏥</span>'">
+                <div>
+                    <span>MedicalAssist</span>
+                    <small>Your Health, Our Priority</small>
+                </div>
+            </a>
+            <div class="header-icons">
+                <a href="cart.html">🛒 <span class="cart-count" id="cartCount">0</span></a>
+                <a href="my-account.html">👤 My Account</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="document.querySelector('nav ul').classList.toggle('show')">☰</button>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="online-pharmacy.html">Pharmacy</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="doctor-consultation.html">Doctors</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<footer>
-    <p>&copy; 2026 Family Planning & Reproductive Health Services. All Rights Reserved.</p>
-</footer>
+    <div class="page-header">
+        <h1>⚖️ Weight Loss Products</h1>
+        <p>Safe, effective weight management solutions — from fat burners to meal replacements</p>
+    </div>
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> / <a href="categories.html">Categories</a> / <span>Weight Loss</span>
+        </div>
+    </div>
 
+    <section class="cat-section">
+        <div class="cat-container">
+            <div class="cat-header">
+                <div class="ch-icon">⚖️</div>
+                <div class="ch-text">
+                    <h2>Your Weight Loss Journey Starts Here</h2>
+                    <p>Whether you're looking to shed a few kilos or embark on a complete transformation, we carry clinically-proven supplements, fat burners, appetite suppressants, and meal replacements. All products are sourced from reputable brands and NDA-approved suppliers. Combine with a healthy diet and exercise for best results.</p>
+                </div>
+            </div>
+
+            <div class="info-banner">
+                <div class="ib-icon">💡</div>
+                <div class="ib-text"><strong>Healthy Weight Loss Tip:</strong> Aim for 0.5–1 kg per week. Sustainable weight loss comes from a balanced diet, regular exercise, adequate sleep, and the right supplements. <a href="doctor-consultation.html" style="color:#0a5c36;font-weight:600;">Consult a doctor</a> before starting any weight loss program.</div>
+            </div>
+
+            <div class="cat-controls">
+                <input type="text" id="prodSearch" placeholder="Search weight loss products..." onkeyup="renderProducts()">
+                <select id="sortBy" onchange="renderProducts()">
+                    <option value="name">Sort: Name A-Z</option>
+                    <option value="price-low">Sort: Price Low-High</option>
+                    <option value="price-high">Sort: Price High-Low</option>
+                    <option value="popular">Sort: Most Popular</option>
+                </select>
+                <select id="catFilter" onchange="renderProducts()">
+                    <option value="all">All Categories</option>
+                    <option value="fat-burner">Fat Burners</option>
+                    <option value="appetite">Appetite Suppressants</option>
+                    <option value="tea">Slimming Teas</option>
+                    <option value="detox">Detox & Cleanse</option>
+                    <option value="meal">Meal Replacements</option>
+                    <option value="natural">Natural Herbal</option>
+                </select>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+            
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div><h4>MedicalAssist</h4><p style="font-size:13px;color:#ccc;line-height:1.6;">Your trusted healthcare partner in Uganda.</p></div>
+                <div><h4>Quick Links</h4><ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li><li><a href="privacy.html">Privacy Policy</a></li></ul></div>
+                <div><h4>Weight Loss</h4><ul><li><a href="weight-loss.html">All Products</a></li><li><a href="vitamins.html">Vitamins</a></li><li><a href="personal-care.html">Personal Care</a></li><li><a href="subscriptions.html">Subscriptions</a></li></ul></div>
+                <div><h4>Contact</h4><ul><li>📞 +256 700 123 456</li><li>✉️ info@medicalassist.ug</li><li>📍 Kampala, Uganda</li></ul></div>
+            </div>
+            <div class="footer-bottom">© 2026 MedicalAssist. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        const allProducts = [
+    // Combined Oral Contraceptives
+    {name:'Microgynon 30 - 21 tablets',cat:'combined',desc:'Ethinylestradiol 30mcg + Levonorgestrel 150mcg',price:12000,oldPrice:0,rating:4.5,popular:95,badge:'Bestseller',img:'microgynon.jpg'},
+    {name:'Yasmin - 21 tablets',cat:'combined',desc:'Ethinylestradiol 30mcg + Drospirenone 3mg',price:25000,oldPrice:30000,rating:4.6,popular:88,badge:'',img:'yasmin.jpg'},
+    {name:'Diane-35 - 21 tablets',cat:'combined',desc:'Cyproterone acetate 2mg + Ethinylestradiol 35mcg',price:22000,oldPrice:0,rating:4.4,popular:72,badge:'',img:'diane.jpg'},
+    {name:'Lo-Femme 20 - 21 tablets',cat:'combined',desc:'Low dose, Ethinylestradiol 20mcg + Levonorgestrel 100mcg',price:15000,oldPrice:0,rating:4.3,popular:65,badge:'',img:'lo-femme.jpg'},
+    {name:'Femelle 20 - 21 tablets',cat:'combined',desc:'Low estrogen, Ethinylestradiol 20mcg + Gestodene 75mcg',price:16000,oldPrice:0,rating:4.2,popular:58,badge:'',img:'femelle.jpg'},
+    {name:'Triquilar - 21 tablets',cat:'combined',desc:'Triphasic: variable levonorgestrel + ethinylestradiol',price:13000,oldPrice:0,rating:4.1,popular:52,badge:'',img:'triquilar.jpg'},
+    {name:'Qlaira - 28 tablets',cat:'combined',desc:'Estradiol valerate + Dienogest, 4-phase',price:35000,oldPrice:40000,rating:4.5,popular:48,badge:'',img:'qlaira.jpg'},
+    {name:'Zoely - 28 tablets',cat:'combined',desc:'Estradiol 1.5mg + Nomegestrol acetate 2.5mg',price:30000,oldPrice:0,rating:4.3,popular:42,badge:'',img:'zoely.jpg'},
+    {name:'Gracial - 22 tablets',cat:'combined',desc:'Ethinylestradiol + Desogestrel, 22-day cycle',price:14000,oldPrice:0,rating:4.0,popular:38,badge:'',img:'gracial.jpg'},
+    {name:'Mercilon - 21 tablets',cat:'combined',desc:'Low dose, Ethinylestradiol 20mcg + Desogestrel 150mcg',price:18000,oldPrice:0,rating:4.2,popular:45,badge:'',img:'mercilon.jpg'},
+    {name:'Cilest - 21 tablets',cat:'combined',desc:'Ethinylestradiol 35mcg + Norgestimate 250mcg',price:17000,oldPrice:0,rating:4.1,popular:35,badge:'',img:'cilest.jpg'},
+    {name:'Marvelon - 21 tablets',cat:'combined',desc:'Ethinylestradiol 30mcg + Desogestrel 150mcg',price:15000,oldPrice:0,rating:4.3,popular:55,badge:'',img:'marvelon.jpg'},
+    {name:'Rigevidon - 21 tablets',cat:'combined',desc:'Ethinylestradiol 30mcg + Levonorgestrel 150mcg',price:10000,oldPrice:0,rating:4.0,popular:62,badge:'Value',img:'rigevidon.jpg'},
+    {name:'Femoden - 21 tablets',cat:'combined',desc:'Ethinylestradiol 30mcg + Gestodene 75mcg',price:16000,oldPrice:0,rating:4.1,popular:40,badge:'',img:'femoden.jpg'},
+    {name:'Belara - 21 tablets',cat:'combined',desc:'Ethinylestradiol 30mcg + Chlormadinone acetate 2mg',price:20000,oldPrice:0,rating:4.2,popular:38,badge:'',img:'belara.jpg'},
+
+    // Progestogen-Only Pills (Mini-pills)
+    {name:'Cerazette - 28 tablets',cat:'mini',desc:'Desogestrel 75mcg, progestogen-only pill',price:18000,oldPrice:0,rating:4.4,popular:78,badge:'Popular',img:'cerazette.jpg'},
+    {name:'Microlut - 28 tablets',cat:'mini',desc:'Levonorgestrel 30mcg, classic mini-pill',price:14000,oldPrice:0,rating:4.1,popular:65,badge:'',img:'microlut.jpg'},
+    {name:'Noriday - 28 tablets',cat:'mini',desc:'Norethisterone 350mcg, progestogen-only',price:15000,oldPrice:0,rating:4.0,popular:45,badge:'',img:'noriday.jpg'},
+    {name:'Micronor - 28 tablets',cat:'mini',desc:'Norethindrone 350mcg, breastfeeding safe',price:16000,oldPrice:0,rating:4.2,popular:52,badge:'',img:'micronor.jpg'},
+    {name:'Exluton - 28 tablets',cat:'mini',desc:'Lynestrenol 500mcg, mini-pill',price:13000,oldPrice:0,rating:3.9,popular:30,badge:'',img:'exluton.jpg'},
+
+    // Long-Acting Contraceptives (available through consultation)
+    {name:'Depo-Provera Injection',cat:'long',desc:'Medroxyprogesterone acetate 150mg, 3-month injectable',price:35000,oldPrice:0,rating:4.5,popular:92,badge:'Popular',img:'depo.jpg'},
+    {name:'Implanon NXT Implant',cat:'long',desc:'Etonogestrel implant, 3-year contraception',price:250000,oldPrice:0,rating:4.6,popular:85,badge:'',img:'implanon.jpg'},
+    {name:'Mirena IUD',cat:'long',desc:'Levonorgestrel IUS, 5-year intrauterine system',price:350000,oldPrice:0,rating:4.7,popular:78,badge:'Premium',img:'mirena.jpg'},
+    {name:'Copper T IUD',cat:'long',desc:'Non-hormonal IUD, 5-10 year protection',price:80000,oldPrice:0,rating:4.3,popular:70,badge:'',img:'copper-t.jpg'},
+    {name:'NuvaRing',cat:'long',desc:'Etonogestrel + Ethinylestradiol vaginal ring, monthly',price:45000,oldPrice:0,rating:4.2,popular:45,badge:'',img:'nuvaring.jpg'},
+    {name:'Evra Patch',cat:'long',desc:'Contraceptive transdermal patch, weekly, 3 weeks/month',price:40000,oldPrice:0,rating:4.1,popular:35,badge:'',img:'evra-patch.jpg'},
+
+    // Accessories & Kits
+    {name:'Pregnancy Test Kit',cat:'accessory',desc:'Urine hCG test, 99% accurate, 2 tests',price:8000,oldPrice:0,rating:4.4,popular:95,badge:'',img:'preg-test.jpg'},
+    {name:'Condoms Ultra Thin 12 pack',cat:'accessory',desc:'Latex condoms, lubricated, trusted brand',price:15000,oldPrice:0,rating:4.3,popular:88,badge:'',img:'condoms.jpg'},
+    {name:'Contraception Starter Kit',cat:'accessory',desc:'Emergency pill + condoms + pregnancy test',price:35000,oldPrice:45000,rating:4.5,popular:65,badge:'Value Kit',img:'contra-kit.jpg'},
+    {name:'Cycle Tracker Calendar',cat:'accessory',desc:'Track your cycle & fertile window, 12 months',price:12000,oldPrice:0,rating:4.0,popular:40,badge:'',img:'cycle-tracker.jpg'}
+];
+        let currentPage = 1;
+        const perPage = 12;
+
+        function renderProducts() {
+            const search = document.getElementById('prodSearch').value.toLowerCase();
+            const catF = document.getElementById('catFilter').value;
+            const sort = document.getElementById('sortBy').value;
+
+            let filtered = allProducts.filter(p => {
+                if (!p.name.toLowerCase().includes(search) && !p.desc.toLowerCase().includes(search)) return false;
+                if (catF !== 'all' && p.cat !== catF) return false;
+                return true;
+            });
+
+            if (sort === 'price-low') filtered.sort((a,b) => a.price - b.price);
+            else if (sort === 'price-high') filtered.sort((a,b) => b.price - a.price);
+            else if (sort === 'popular') filtered.sort((a,b) => b.popular - a.popular);
+            else filtered.sort((a,b) => a.name.localeCompare(b.name));
+
+            const totalPages = Math.ceil(filtered.length / perPage);
+            if (currentPage > totalPages) currentPage = 1;
+            const start = (currentPage - 1) * perPage;
+            const pageItems = filtered.slice(start, start + perPage);
+
+            if (pageItems.length === 0) {
+                document.getElementById('productsGrid').innerHTML = '<div class="empty-state"><div style="font-size:50px;margin-bottom:10px;">🔍</div><p>No products found.</p></div>';
+            } else {
+                document.getElementById('productsGrid').innerHTML = pageItems.map(p => {
+                    const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '');
+                    return `<div class="product-card">
+                        ${p.badge ? `<span class="p-badge">${p.badge}</span>` : ''}
+                        ${p.oldPrice > 0 ? `<span class="p-sale">${Math.round((1-p.price/p.oldPrice)*100)}% OFF</span>` : ''}
+                        <img src="images/${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/150?text=${encodeURIComponent(p.name)}'">
+                        <div class="p-name">${p.name}</div>
+                        <div class="p-desc">${p.desc}</div>
+                        <div class="p-rating">${stars} (${p.popular})</div>
+                        <div class="p-price">UGX ${p.price.toLocaleString()}${p.oldPrice ? `<span class="p-old-price">UGX ${p.oldPrice.toLocaleString()}</span>` : ''}</div>
+                        ${p.price >= 50000 ? '<div class="p-free">🚚 Free Delivery</div>' : ''}
+                        <div class="p-actions">
+                            <button class="add-cart" onclick="addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},'${p.img}')">Add to Cart</button>
+                            <button class="add-wish" onclick="addToWishlist('${p.name.replace(/'/g,"\\'")}',${p.price},'${p.img}')">♥</button>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            let pagHtml = '';
+            for (let i = 1; i <= totalPages; i++) {
+                pagHtml += `<button class="${i === currentPage ? 'active' : ''}" onclick="currentPage=${i};renderProducts();">${i}</button>`;
+            }
+            document.getElementById('pagination').innerHTML = totalPages > 1 ? pagHtml : '';
+            updateCartCount();
+        }
+
+        function addToCart(name, price, img) {
+            let cart = JSON.parse(localStorage.getItem('medicalCart')) || [];
+            const existing = cart.find(c => c.name === name);
+            if (existing) existing.quantity = (existing.quantity || 1) + 1;
+            else cart.push({name, price, img, quantity: 1});
+            localStorage.setItem('medicalCart', JSON.stringify(cart));
+            alert('✅ "' + name + '" added to cart!');
+            updateCartCount();
+        }
+
+        function addToWishlist(name, price, img) {
+            let wishlist = JSON.parse(localStorage.getItem('medicalWishlist')) || [];
+            if (!wishlist.find(w => w.name === name)) {
+                wishlist.push({name, price, img});
+                localStorage.setItem('medicalWishlist', JSON.stringify(wishlist));
+                alert('❤️ "' + name + '" added to wishlist!');
+            } else alert('Already in your wishlist!');
+        }
+
+        function updateCartCount() {
+            const c = JSON.parse(localStorage.getItem('medicalCart')) || [];
+            const el = document.getElementById('cartCount');
+            if (el) el.textContent = c.reduce((s,i) => s + (i.quantity || 1), 0);
+        }
+
+        renderProducts();
+    </script>
+    <select id="catFilter" onchange="renderProducts()">
+    <option value="all">All Types</option>
+    <option value="combined">Combined Pills (COC)</option>
+    <option value="mini">Mini-Pills (POP)</option>
+    <option value="long">Long-Acting</option>
+    <option value="accessory">Accessories & Kits</option>
+</select>
+    <div class="info-banner" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">
+    <div class="ib-icon">⚠️</div>
+    <div class="ib-text"><strong>Prescription Required:</strong> All contraceptive pills require a valid prescription from a licensed doctor. <a href="doctor-consultation.html" style="color:#0a5c36;font-weight:600;">Book a confidential consultation</a> with our doctors to get your prescription. Long-acting methods (implants, IUDs, injections) require an in-person visit.</div>
+</div>
 </body>
 </html>
